@@ -7,8 +7,6 @@ var argv = yargs.argv;
 
 var address = argv.address;
 
-// console.log(address);
-
 var encodedLocation = function(add){
     return new Promise(function(resolve, reject){
         geocodeAddress(add, function(errorMsg, result){
@@ -21,7 +19,8 @@ var encodedLocation = function(add){
         });
     });
 }(address);
-encodedLocation.
+
+var weatherResult = encodedLocation.
     then(function(result){
         return new Promise(function(resolve, reject){
             weather(result.latitude, result.longitude, function(errorMsg, result){
@@ -33,7 +32,11 @@ encodedLocation.
                 }
             })
         });
-}).then(function(result){
+});
+
+
+weatherResult.
+then(function(result){
     console.log('The actual temperature is:', result.temperature);
     console.log('The apparent temperature is:', result.apparentTemperature);
 }).catch(function(err){
