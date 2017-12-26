@@ -29,6 +29,4 @@ let geocodeAddress = function (address, callback) {
     });
 };
 
-module.exports = {
-    geocodeAddress : geocodeAddress
-};
+module.exports = geocodeAddress;
